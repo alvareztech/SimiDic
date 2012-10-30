@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco1" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blanco1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margen"
+            android:text="@string/app_full_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/negro1"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/licenceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/licence"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/titleAuthorsNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:text="@string/authors"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/authors_names"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/negro2" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/ketanolab"
+            android:src="@drawable/logo_ketanolab" />
+
+        <TextView
+            android:id="@+id/urlKetanolab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ketanolab"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/illa_a"
+            android:src="@drawable/logo_illa" />
+
+        <TextView
+            android:id="@+id/urlIllaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/illa_a"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:text="@string/developer"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dany"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:text="Lingüista"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amos Batto"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:text="Coordinador y gráficos"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedro Teran"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:text="Productores"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hardy Beltran\nClement Lamy"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margen"
+            android:text="Agradecimientos especiales"
+            android:textColor="@color/negro2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Educación Intercultural Bilingüe del Ministerio de Educación\nEstado Plurinacional de Bolivia"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/negro2"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+
+</ScrollView>
