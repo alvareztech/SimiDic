@@ -79,6 +79,21 @@ public class Util {
 	}
 	
 	
+	public static void showAlertNoInternet(final Context context) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle(R.string.no_internet);
+		builder.setMessage(R.string.you_dont_have_conection);
+		builder.setCancelable(false);
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				((Activity)context).finish();
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+	
+	
 	public static String[] getNameAndAuthorDictionary(SQLiteDatabase db) {
 		Cursor cursor = db.rawQuery("SELECT name, author FROM info", null);
 		if (cursor.moveToFirst()) {

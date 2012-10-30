@@ -1423,7 +1423,6 @@ containing a value of this type.
         public static final int Theme_Sherlock_Light_ForceOverflow=0x7f0a0058;
         public static final int Theme_Sherlock_Light_NoActionBar=0x7f0a0056;
         public static final int Theme_Sherlock_NoActionBar=0x7f0a0055;
-        public static final int Theme_Styled=0x7f0a005d;
         public static final int Widget=0x7f0a0001;
         public static final int Widget_IconPageIndicator=0x7f0a0004;
         public static final int Widget_Sherlock_ActionBar=0x7f0a0006;
@@ -1470,7 +1469,6 @@ containing a value of this type.
         public static final int Widget_Sherlock_ProgressBar_Horizontal=0x7f0a0034;
         public static final int Widget_Sherlock_Spinner_DropDown_ActionBar=0x7f0a0028;
         public static final int Widget_Sherlock_TextView_SpinnerItem=0x7f0a0036;
-        public static final int Widget_Styled_ActionBar=0x7f0a005e;
         public static final int Widget_TabPageIndicator=0x7f0a0002;
     }
     public static final class styleable {

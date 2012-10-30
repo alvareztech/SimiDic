@@ -80,7 +80,7 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 		listView.setOnItemClickListener(this);
 
 		if (!Util.hayInternet(this)) {
-			showAlertNoInternet();
+			Util.showAlertNoInternet(this);
 		} else {
 			new LoadJSON().execute(Constants.URL_JSON);
 		}
@@ -153,19 +153,7 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 		}
 	}
 
-	private void showAlertNoInternet() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.no_internet);
-		builder.setMessage(R.string.you_dont_have_conection);
-		builder.setCancelable(false);
-		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				DescargaActivity.this.finish();
-			}
-		});
-		AlertDialog alert = builder.create();
-		alert.show();
-	}
+
 
 	public void onItemClick(AdapterView<?> arg0, View arg1, int posicion, long arg3) {
 

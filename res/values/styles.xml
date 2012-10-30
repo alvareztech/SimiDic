@@ -2,16 +2,4 @@
 
     <style name="AppTheme" parent="android:Theme.Light" />
 
-    <style name="Theme.Styled" parent="Theme.Sherlock.Light.ForceOverflow">
-        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
-        <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
-        <item name="actionMenuTextColor">@color/violeta_claro</item>
-        <item name="android:actionMenuTextColor">@color/violeta_claro</item>
-    </style>
-
-    <style name="Widget.Styled.ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
-        <item name="background">@drawable/violet_gradient</item>
-        <item name="android:background">@drawable/violet_gradient</item>
-    </style>
-
 </resources>
