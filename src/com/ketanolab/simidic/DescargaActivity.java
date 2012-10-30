@@ -18,9 +18,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -220,7 +218,7 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 
 			// Update List
 			if (!Util.hayInternet(DescargaActivity.this)) {
-				Util.showAlertNoInternet(this);
+				Util.showAlertNoInternet(DescargaActivity.this);
 			} else {
 				listAdapter.eliminarTodo();
 				new LoadJSON().execute(Constants.URL_JSON);
