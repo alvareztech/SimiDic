@@ -220,7 +220,7 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 
 			// Update List
 			if (!Util.hayInternet(DescargaActivity.this)) {
-				showAlertNoInternet();
+				Util.showAlertNoInternet(this);
 			} else {
 				listAdapter.eliminarTodo();
 				new LoadJSON().execute(Constants.URL_JSON);
@@ -262,7 +262,7 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 		switch (item.getItemId()) {
 		case R.id.item_update:
 			if (!Util.hayInternet(this)) {
-				showAlertNoInternet();
+				Util.showAlertNoInternet(this);
 			} else {
 				listAdapter.eliminarTodo();
 				new LoadJSON().execute(Constants.URL_JSON);
