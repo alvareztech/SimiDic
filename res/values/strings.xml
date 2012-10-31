@@ -44,7 +44,7 @@
     <string name="no_favorite_now">Esta palabra ya no es favorita.</string>
     
     <!-- AboutActivity -->
-    <string name="app_full_name">SimiDic 1.0</string>
+    <string name="app_full_name">SimiDic 1.0.1</string>
     <string name="illa_a">ILLA-A</string>
     <string name="licence">GPL 3</string>
     <string name="credits">Basado de los diccionarios de:</string>
