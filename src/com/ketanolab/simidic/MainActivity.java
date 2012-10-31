@@ -30,7 +30,8 @@ import com.actionbarsherlock.view.MenuItem;
 import com.ketanolab.simidic.util.Constants;
 import com.ketanolab.simidic.util.Util;
 
-public class MainActivity extends SherlockActivity implements ActionBar.OnNavigationListener, OnItemClickListener {
+public class MainActivity extends SherlockActivity implements
+		ActionBar.OnNavigationListener, OnItemClickListener {
 
 	// Paths dictionaries
 	private ArrayList<String> pathsDictionaries;
@@ -58,10 +59,13 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 
 		// Navigation
 		Context context = getSupportActionBar().getThemedContext();
-		listNavigationAdapter = new ArrayAdapter<String>(context, R.layout.sherlock_spinner_item);
-		listNavigationAdapter.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
+		listNavigationAdapter = new ArrayAdapter<String>(context,
+				R.layout.sherlock_spinner_item);
+		listNavigationAdapter
+				.setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
 		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		getSupportActionBar().setListNavigationCallbacks(listNavigationAdapter, this);
+		getSupportActionBar().setListNavigationCallbacks(listNavigationAdapter,
+				this);
 
 		// List
 		listView = (ListView) findViewById(R.id.lista);
@@ -70,13 +74,15 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 		cajaConsulta = (EditText) findViewById(R.id.caja_consulta);
 		cajaConsulta.addTextChangedListener(new TextWatcher() {
 
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
 				if (s.toString().length() > 0) {
 					simpleCursorAdapter.getFilter().filter(s.toString());
 				}
 			}
 
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
 			}
 
 			public void afterTextChanged(Editable s) {
@@ -98,12 +104,14 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 		scanDictionaries(); // and put in navigation
 
 		// Load words
-		Log.i(Constants.DEBUG, "Cargando palabras... dics" + pathsDictionaries.size());
+		Log.i(Constants.DEBUG,
+				"Cargando palabras... dics" + pathsDictionaries.size());
 		if (pathsDictionaries.size() > 0) {
 			if (db != null) {
 				db.close();
 			}
-			db = SQLiteDatabase.openOrCreateDatabase(pathsDictionaries.get(itemSelectedNavigation), null);
+			db = SQLiteDatabase.openOrCreateDatabase(
+					pathsDictionaries.get(itemSelectedNavigation), null);
 			loadAllWords();
 			Log.i(Constants.DEBUG, "> " + pathsDictionaries.size());
 		}
@@ -119,16 +127,19 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 		int[] to = { 0, R.id.word_item, R.id.meaning_item };
 		// Cursor cursor = db.rawQuery("SELECT _id, word, summary FROM words",
 		// null);
-		Cursor cursor = db.query("words", columns, null, null, null, null, null);
+		Cursor cursor = db
+				.query("words", columns, null, null, null, null, null);
 
-		simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.word_list_item, cursor, columns, to, 0);
+		simpleCursorAdapter = new SimpleCursorAdapter(this,
+				R.layout.word_list_item, cursor, columns, to, 0);
 
 		simpleCursorAdapter.setFilterQueryProvider(new FilterQueryProvider() {
 			public Cursor runQuery(CharSequence constraint) {
 
 				String word = constraint.toString() + "%";
 				Cursor cursor = null;
-				if (pathsDictionaries.get(itemSelectedNavigation).contains("gn")) {
+				if (pathsDictionaries.get(itemSelectedNavigation)
+						.contains("gn")) {
 					cursor = db
 							.rawQuery(
 									"SELECT _id, word, summary FROM words WHERE replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(word,'á','a'),'é','e'),'í','i'),'ó','o'),'ú','u'),'(',''),')',''),'ñ','n'),'ï','i'),'ä','a'),'ë','e'),'ö','o'),'ü','u') LIKE ?",
@@ -177,12 +188,19 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 	private void putDataDictionariesInNavigation() {
 		listNavigationAdapter.clear();
 		for (int i = 0; i < pathsDictionaries.size(); i++) {
-			SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(pathsDictionaries.get(i), null);
+			SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(
+					pathsDictionaries.get(i), null);
 			try {
 				String[] nameAndAuthor = Util.getNameAndAuthorDictionary(db);
 				listNavigationAdapter.add(nameAndAuthor[0]); // ***
 			} catch (Exception ex) {
-				Log.e(Constants.DEBUG, "Error en la consulta a la base de datos.");
+				Log.e(Constants.DEBUG,
+						"Error en la consulta a la base de datos. ---");
+				File archivo = new File(pathsDictionaries.get(i));
+				Log.i(Constants.DEBUG, "Delete: " + archivo.getAbsolutePath());
+				archivo.delete();
+				listNavigationAdapter.notifyDataSetChanged();
+				onStart();
 			}
 			db.close();
 		}
@@ -245,7 +263,8 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 
 		itemSelectedNavigation = position;
 		if (pathsDictionaries.size() > 0) {
-			db = SQLiteDatabase.openOrCreateDatabase(pathsDictionaries.get(itemSelectedNavigation), null);
+			db = SQLiteDatabase.openOrCreateDatabase(
+					pathsDictionaries.get(itemSelectedNavigation), null);
 			loadAllWords();
 		}
 
@@ -262,8 +281,7 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 	// ****************************************************************************************************
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.activity_main, menu);
+		getSupportMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
 
@@ -286,7 +304,8 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 			startActivity(intentCreditos);
 			break;
 		case R.id.menu_dictionaries:
-			Intent intentDiccionarios = new Intent(this, DiccionariosActivity.class);
+			Intent intentDiccionarios = new Intent(this,
+					DiccionariosActivity.class);
 			startActivity(intentDiccionarios);
 			break;
 		}
@@ -297,12 +316,14 @@ public class MainActivity extends SherlockActivity implements ActionBar.OnNaviga
 
 	public void onItemClick(AdapterView<?> arg0, View v, int posicion, long id) {
 		// Start PalabraActivity
-		String word = ((TextView) v.findViewById(R.id.word_item)).getText().toString();
+		String word = ((TextView) v.findViewById(R.id.word_item)).getText()
+				.toString();
 		Intent intent = new Intent(this, PalabraActivity.class);
 		// intent.putExtra("name", namesDictionaries.get(currentNavigation));
 		// intent.putExtra("author",
 		// authorsDictionaries.get(currentNavigation));
-		intent.putExtra("path", pathsDictionaries.get(getSupportActionBar().getSelectedNavigationIndex()));
+		intent.putExtra("path", pathsDictionaries.get(getSupportActionBar()
+				.getSelectedNavigationIndex()));
 		intent.putExtra("word", word);
 		startActivity(intent);
 	}

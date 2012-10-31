@@ -24,11 +24,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -53,6 +50,9 @@ public class DescargaActivity extends SherlockActivity implements
 	private RelativeLayout layoutCargando;
 	private RelativeLayout layoutMensaje;
 
+	// Tasks
+	private ArrayList<DownloadFile> tasks;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.Theme_Sherlock_Light_DarkActionBar_ForceOverflow);
@@ -76,6 +76,8 @@ public class DescargaActivity extends SherlockActivity implements
 		} else {
 			Util.showAlertNoInternet(this);
 		}
+
+		tasks = new ArrayList<DownloadFile>();
 	}
 
 	public class LoadJSON extends AsyncTask<String, String, Void> {
@@ -135,15 +137,22 @@ public class DescargaActivity extends SherlockActivity implements
 			if (listAdapter.getCount() == 0) {
 				layoutMensaje.setVisibility(View.VISIBLE);
 			}
+			for (int i = 0; i < listAdapter.getCount(); i++) {
+				tasks.add(new DownloadFile(i));
+			}
 		}
 	}
 
 	public void onItemClick(AdapterView<?> arg0, View view, int posicion,
 			long id) {
 		Log.i(Constants.DEBUG, "Descargando... " + fileNames.get(posicion));
-		new DownloadFile(posicion).execute(urls.get(posicion),
-				fileNames.get(posicion));
-		Toast.makeText(this, ">>>> " + posicion, Toast.LENGTH_SHORT).show();
+		tasks.add(posicion, new DownloadFile(posicion));
+		if (tasks.get(posicion).isCancelled()) {
+			tasks.get(posicion).cancel(true);
+		} else {
+			tasks.get(posicion).execute(urls.get(posicion),
+					fileNames.get(posicion));
+		}
 	}
 
 	private class DownloadFile extends AsyncTask<String, Integer, String> {
@@ -200,11 +209,16 @@ public class DescargaActivity extends SherlockActivity implements
 		}
 
 		@Override
+		protected void onCancelled() {
+			// TODO Auto-generated method stub
+			super.onCancelled();
+		}
+
+		@Override
 		protected void onProgressUpdate(Integer... progress) {
 			super.onProgressUpdate(progress);
 			listAdapter.updateProgress(position, progress[0]);
 			listAdapter.notifyDataSetChanged();
-			// mProgressDialog.setProgress(progress[0]);
 		}
 
 		@Override
@@ -249,4 +263,9 @@ public class DescargaActivity extends SherlockActivity implements
 		return true;
 	}
 
+	@Override
+	protected void onStop() {
+		super.onStop();
+
+	}
 }
