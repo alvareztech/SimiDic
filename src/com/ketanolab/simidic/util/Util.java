@@ -1,5 +1,7 @@
 package com.ketanolab.simidic.util;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,17 +18,41 @@ import com.ketanolab.simidic.R;
 
 public class Util {
 
-	public static boolean hayInternet(Context contexto) {
-		ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
-				|| cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTING
-				|| cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING
-				|| cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
+	public static boolean isOnline(Context context) {
+		ConnectivityManager cm = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+		if (networkInfo != null && networkInfo.isConnected()) {
 			return true;
 		}
 		return false;
-//		ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
-//		return cm.getActiveNetworkInfo().isConnectedOrConnecting();
+	}
+
+	// public static boolean hayInternet(Context contexto) {
+	// ConnectivityManager cm = (ConnectivityManager) contexto
+	// .getSystemService(Context.CONNECTIVITY_SERVICE);
+	// if (cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
+	// || cm.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTING
+	// || cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING
+	// || cm.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
+	// return true;
+	// }
+	// return false;
+	// }
+
+	public static boolean isDownloaded(String file) {
+		File directory = new File(Constants.PATH_DICTIONARIES);
+		if (directory.exists()) {
+			File[] files = directory.listFiles();
+			if (files.length > 0) {
+				for (int i = 0; i < files.length; i++) {
+					if (files[i].getName().equals(file)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	public static boolean checkFilenameDictionary(String name) {
@@ -48,11 +74,12 @@ public class Util {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(R.string.sd_required);
 		builder.setMessage(R.string.you_dont_have_sd);
-		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				((Activity) context).finish();
-			}
-		});
+		builder.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						((Activity) context).finish();
+					}
+				});
 		AlertDialog alert = builder.create();
 		alert.setCancelable(false);
 		alert.show();
@@ -62,38 +89,40 @@ public class Util {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(R.string.download_dictionaries);
 		builder.setMessage(R.string.you_dont_have_dictionaries);
-		builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				Intent intent = new Intent(context, DescargaActivity.class);
-				context.startActivity(intent);
-			}
-		});
-		builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				((Activity) context).finish();
-			}
-		});
+		builder.setPositiveButton(android.R.string.yes,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						Intent intent = new Intent(context,
+								DescargaActivity.class);
+						context.startActivity(intent);
+					}
+				});
+		builder.setNegativeButton(android.R.string.no,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						((Activity) context).finish();
+					}
+				});
 		AlertDialog alert = builder.create();
 		alert.setCancelable(false);
 		alert.show();
 	}
-	
-	
+
 	public static void showAlertNoInternet(final Context context) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(R.string.no_internet);
 		builder.setMessage(R.string.you_dont_have_conection);
 		builder.setCancelable(false);
-		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				((Activity)context).finish();
-			}
-		});
+		builder.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						((Activity) context).finish();
+					}
+				});
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
-	
-	
+
 	public static String[] getNameAndAuthorDictionary(SQLiteDatabase db) {
 		Cursor cursor = db.rawQuery("SELECT name, author FROM info", null);
 		if (cursor.moveToFirst()) {

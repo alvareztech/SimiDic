@@ -7,6 +7,23 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/descargaImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margen"
+            android:layout_marginLeft="@dimen/margen"
+            android:layout_marginTop="@dimen/margen"
+            android:src="@drawable/ic_menu_download" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical" >
 
@@ -41,27 +58,24 @@
             android:text="@string/description"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/negro2" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical" >
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margen"
             android:layout_marginLeft="@dimen/margen"
             android:layout_marginRight="@dimen/margen"
-            android:src="@drawable/ic_menu_download" />
-
+            android:max="100"
+            android:progress="0"
+            android:visibility="gone" />
+
         <TextView
-            android:id="@+id/sizeItem"
+            android:id="@+id/extraItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margen"
             android:layout_marginLeft="@dimen/margen"
             android:layout_marginRight="@dimen/margen"
             android:text="@string/size"

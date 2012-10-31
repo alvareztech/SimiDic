@@ -18,6 +18,7 @@
 
     <!-- DescargaActivity -->
     <string name="downloads">Descargas</string>
+    <string name="downloaded">Descargado</string>
     <string name="downloading">Descargando…</string>
     <string name="load_completed">Carga completada</string>
     <string name="no_internet">Sin internet</string>
