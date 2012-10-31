@@ -26,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -34,8 +35,7 @@ import com.ketanolab.simidic.adapters.DownloadsListAdapter;
 import com.ketanolab.simidic.util.Constants;
 import com.ketanolab.simidic.util.Util;
 
-public class DescargaActivity extends SherlockActivity implements
-		OnItemClickListener {
+public class DescargaActivity extends SherlockActivity implements OnItemClickListener {
 
 	// URLs
 	private ArrayList<String> urls;
@@ -97,8 +97,7 @@ public class DescargaActivity extends SherlockActivity implements
 			httpGet.setHeader("content-type", "application/json");
 			try {
 				HttpResponse httpResponse = httpClient.execute(httpGet);
-				String resultado = EntityUtils.toString(
-						httpResponse.getEntity(), HTTP.UTF_8);
+				String resultado = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
 				JSONArray jsonArray = new JSONArray(resultado);
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -123,8 +122,7 @@ public class DescargaActivity extends SherlockActivity implements
 			if (!Util.isDownloaded(values[3])) {
 				fileNames.add(values[3]);
 				urls.add(values[4]);
-				listAdapter.adicionarItem(R.drawable.ic_menu_download,
-						values[0], values[1], values[2], values[5]);
+				listAdapter.adicionarItem(R.drawable.ic_menu_download, values[0], values[1], values[2], values[5]);
 				Log.i(Constants.DEBUG, "Added item download: " + values[0]);
 			}
 			Log.i(Constants.DEBUG, "Added item (all) download: " + values[0]);
@@ -142,52 +140,50 @@ public class DescargaActivity extends SherlockActivity implements
 		}
 	}
 
-	public void onItemClick(AdapterView<?> arg0, View view, int posicion,
-			long id) {
+	public void onItemClick(AdapterView<?> arg0, View view, int posicion, long id) {
 		Log.i(Constants.DEBUG, "Descargando... " + fileNames.get(posicion));
 		tasks.add(posicion, new DownloadFile(posicion));
 		if (tasks.get(posicion).isCancelled()) {
 			tasks.get(posicion).cancel(true);
 		} else {
-			tasks.get(posicion).execute(urls.get(posicion),
-					fileNames.get(posicion));
+			tasks.get(posicion).execute(urls.get(posicion), fileNames.get(posicion));
 		}
 	}
 
-	private class DownloadFile extends AsyncTask<String, Integer, String> {
+	private class DownloadFile extends AsyncTask<String, Integer, Long> {
 
 		private int position;
+		private long fileLength;
 
 		public DownloadFile(int position) {
 			this.position = position;
+			this.fileLength = 0;
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			listAdapter.updateItem(position, R.drawable.ic_action_cancel,
-					getResources().getString(R.string.downloading), true);
+			listAdapter.updateItem(position, R.drawable.ic_action_cancel, getResources()
+					.getString(R.string.downloading), true);
 		}
 
 		@Override
-		protected String doInBackground(String... args) {
+		protected Long doInBackground(String... args) {
 			try {
 				File directorio = new File(Constants.PATH_DICTIONARIES);
 				if (!directorio.exists()) {
 					directorio.mkdirs();
 				}
-
 				URL url = new URL(args[0]);
 				URLConnection connection = url.openConnection();
 				connection.connect();
 
-				int fileLength = connection.getContentLength();
-				Log.i(Constants.DEBUG, ">> " + fileLength);
+				fileLength = connection.getContentLength();
+				Log.i(Constants.DEBUG, "> Tamaño del archivo a descargar " + fileLength);
 
 				// Download file
 				InputStream input = new BufferedInputStream(url.openStream());
-				OutputStream output = new FileOutputStream(
-						Constants.PATH_DICTIONARIES + args[1]);
+				OutputStream output = new FileOutputStream(Constants.PATH_DICTIONARIES + args[1]);
 
 				byte data[] = new byte[1024];
 				long total = 0;
@@ -197,20 +193,16 @@ public class DescargaActivity extends SherlockActivity implements
 					publishProgress((int) (total * 100 / fileLength));
 					output.write(data, 0, count);
 				}
-
 				output.flush();
 				output.close();
 				input.close();
+
+				File file = new File(Constants.PATH_DICTIONARIES + args[1]);
+				return file.length();
 			} catch (Exception e) {
 				Log.i(Constants.DEBUG, "Error al descargar: " + e.toString());
 			}
-			return null;
-		}
-
-		@Override
-		protected void onCancelled() {
-			// TODO Auto-generated method stub
-			super.onCancelled();
+			return 0l;
 		}
 
 		@Override
@@ -221,17 +213,18 @@ public class DescargaActivity extends SherlockActivity implements
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(Long result) {
 			super.onPostExecute(result);
+			Log.i(Constants.DEBUG, "> Download finish: size: " + result);
 
-			listAdapter.updateItem(position, R.drawable.ic_action_ok,
-					getResources().getString(R.string.downloaded), false);
-			// Update List
-			// if (!Util.isOnline(DescargaActivity.this)) {
-			// Util.showAlertNoInternet(DescargaActivity.this);
-			// } else {
-			// new LoadJSON().execute(Constants.URL_JSON);
-			// }
+			if (fileLength == result) {
+				listAdapter.updateItem(position, R.drawable.ic_action_ok,
+						getResources().getString(R.string.downloaded), false);
+			} else {
+				Toast.makeText(DescargaActivity.this, R.string.download_failed, Toast.LENGTH_SHORT).show();
+				listAdapter.updateItem(position, R.drawable.ic_menu_download,
+						getResources().getString(R.string.try_again), false);
+			}
 		}
 	}
 
@@ -252,10 +245,19 @@ public class DescargaActivity extends SherlockActivity implements
 			finish();
 			return false;
 		case R.id.item_update:
-			if (Util.isOnline(this)) {
-				new LoadJSON().execute(Constants.URL_JSON);
-			} else {
-				Util.showAlertNoInternet(this);
+			try {
+				if (Util.isOnline(this)) {
+					new LoadJSON().execute(Constants.URL_JSON);
+				} else {
+					Util.showAlertNoInternet(this);
+				}
+			} catch (Exception ex) {
+				Toast.makeText(this, R.string.download_failed, Toast.LENGTH_SHORT).show();
+				if (Util.isOnline(this)) {
+					new LoadJSON().execute(Constants.URL_JSON);
+				} else {
+					Util.showAlertNoInternet(this);
+				}
 			}
 			break;
 		}

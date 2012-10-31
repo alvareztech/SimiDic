@@ -1331,52 +1331,54 @@ containing a value of this type.
         public static final int abs__shareactionprovider_share_with_application=0x7f0b0009;
         /**  AboutActivity 
          */
-        public static final int app_full_name=0x7f0b002c;
+        public static final int app_full_name=0x7f0b002e;
         public static final int app_name=0x7f0b000a;
         public static final int app_version_name=0x7f0b000b;
-        public static final int author=0x7f0b0022;
-        public static final int authors=0x7f0b0031;
-        public static final int authors_names=0x7f0b0030;
+        public static final int author=0x7f0b0023;
+        public static final int authors=0x7f0b0033;
+        public static final int authors_names=0x7f0b0032;
         /**  FavoritosActivity 
          */
-        public static final int by=0x7f0b0029;
+        public static final int by=0x7f0b002b;
         public static final int creditos=0x7f0b000e;
-        public static final int credits=0x7f0b002f;
-        public static final int dany=0x7f0b0026;
+        public static final int credits=0x7f0b0031;
+        public static final int dany=0x7f0b0027;
         public static final int descargar=0x7f0b0011;
-        public static final int description=0x7f0b0023;
-        public static final int developer=0x7f0b0025;
+        public static final int description=0x7f0b0024;
+        public static final int developer=0x7f0b0026;
         public static final int diccionarios=0x7f0b0010;
         /**  MainActivity 
          */
         public static final int download_dictionaries=0x7f0b0013;
-        public static final int downloaded=0x7f0b0018;
-        public static final int downloading=0x7f0b0019;
         /**  DescargaActivity 
          */
-        public static final int downloads=0x7f0b0017;
-        public static final int favorite=0x7f0b0027;
+        public static final int download_failed=0x7f0b0017;
+        public static final int downloaded=0x7f0b0019;
+        public static final int downloading=0x7f0b001a;
+        public static final int downloads=0x7f0b0018;
+        public static final int favorite=0x7f0b0028;
         /**  PalabraActivity 
          */
-        public static final int favorite_now=0x7f0b002a;
+        public static final int favorite_now=0x7f0b002c;
         public static final int favoritos=0x7f0b000f;
-        public static final int illa_a=0x7f0b002d;
+        public static final int illa_a=0x7f0b002f;
         public static final int informacion=0x7f0b0012;
         public static final int ingrese_palabra=0x7f0b000d;
         public static final int ketanolab=0x7f0b000c;
-        public static final int licence=0x7f0b002e;
-        public static final int load_completed=0x7f0b001a;
-        public static final int loading=0x7f0b001e;
-        public static final int meaning=0x7f0b0020;
-        public static final int name=0x7f0b0021;
-        public static final int no_downloads=0x7f0b0028;
-        public static final int no_favorite_now=0x7f0b002b;
-        public static final int no_internet=0x7f0b001b;
+        public static final int licence=0x7f0b0030;
+        public static final int load_completed=0x7f0b001b;
+        public static final int loading=0x7f0b001f;
+        public static final int meaning=0x7f0b0021;
+        public static final int name=0x7f0b0022;
+        public static final int no_downloads=0x7f0b002a;
+        public static final int no_favorite_now=0x7f0b002d;
+        public static final int no_internet=0x7f0b001c;
         public static final int sd_required=0x7f0b0015;
-        public static final int size=0x7f0b0024;
-        public static final int update=0x7f0b001d;
-        public static final int word=0x7f0b001f;
-        public static final int you_dont_have_conection=0x7f0b001c;
+        public static final int size=0x7f0b0025;
+        public static final int try_again=0x7f0b0029;
+        public static final int update=0x7f0b001e;
+        public static final int word=0x7f0b0020;
+        public static final int you_dont_have_conection=0x7f0b001d;
         public static final int you_dont_have_dictionaries=0x7f0b0014;
         public static final int you_dont_have_sd=0x7f0b0016;
     }

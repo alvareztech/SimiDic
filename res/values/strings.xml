@@ -17,6 +17,7 @@
     <string name="you_dont_have_sd">No tienes una memoria externa instalada, SimiDic lo requiere para almacenar los diccionarios.</string>
 
     <!-- DescargaActivity -->
+    <string name="download_failed">Descarga fallida, intente de nuevo.</string>
     <string name="downloads">Descargas</string>
     <string name="downloaded">Descargado</string>
     <string name="downloading">Descargando…</string>
@@ -34,15 +35,16 @@
     <string name="developer">Desarrollador</string>
     <string name="dany">Daniel Alvarez</string>
     <string name="favorite">Favorito</string>
+    <string name="try_again">Fallo la descarga, intenta de nuevo.</string>
     <string name="no_downloads">No hay diccionarios nuevos para descargar, intenta en otro momento.</string>
-    
+
     <!-- FavoritosActivity -->
     <string name="by">por</string>
 
     <!-- PalabraActivity -->
     <string name="favorite_now">Esta palabra es favorita ahora.</string>
     <string name="no_favorite_now">Esta palabra ya no es favorita.</string>
-    
+
     <!-- AboutActivity -->
     <string name="app_full_name">SimiDic 1.0.1</string>
     <string name="illa_a">ILLA-A</string>

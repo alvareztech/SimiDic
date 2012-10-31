@@ -1,6 +1,6 @@
 package com.ketanolab.simidic;
 
-import java.io.File;
+import java.util.ArrayList;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,7 +11,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.ketanolab.simidic.adapters.AdaptadorViewPager;
-import com.ketanolab.simidic.util.Constants;
+import com.ketanolab.simidic.util.Dictionaries;
 import com.viewpagerindicator.CirclePageIndicator;
 
 public class DiccionariosActivity extends SherlockActivity {
@@ -26,8 +26,8 @@ public class DiccionariosActivity extends SherlockActivity {
 		setTheme(R.style.Theme_Sherlock_Light_DarkActionBar_ForceOverflow);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_diccionarios);
-
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 		// Paginado
 		viewPager = (ViewPager) findViewById(R.id.viewPager);
 		adaptadorViewPager = new AdaptadorViewPager(this);
@@ -35,37 +35,12 @@ public class DiccionariosActivity extends SherlockActivity {
 		indicator = (CirclePageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(viewPager);
 		// Fin Paginado
-		// DiccionariosDbAdapter dbDiccionarios = new
-		// DiccionariosDbAdapter(this);
-		// dbDiccionarios.abrir();
-		// Cursor cursor = dbDiccionarios.obtenerTodosDiccionarios();
-		// if (cursor.moveToFirst()) {
-		// do {
-		// String nombre = cursor.getString(1);
-		// String origen = cursor.getString(2);
-		// String destino = cursor.getString(3);
-		// String autor = cursor.getString(4);
-		// String descripcion = cursor.getString(5);
-		// adaptadorViewPager.adicionarItem(
-		// R.drawable.ic_launcher_diccionario, origen + " - "
-		// + destino, autor, descripcion);
-		// } while (cursor.moveToNext());
-		// }
-		// cursor.close();
-		// dbDiccionarios.cerrar();
-		File directory = new File(Constants.PATH_DICTIONARIES);
-		if (directory.exists()) {
-			File[] files = directory.listFiles();
-			if (files.length > 0) {
-				for (int i = 0; i < files.length; ++i) {
-					if (files[i].getName().length() < 15) { // For files that
-						// are not database
-					SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(files[i], null);
-					setDataDictionary(db);
-					db.close();
-					}
-				}
-			}
+
+		ArrayList<String> paths = Dictionaries.scanDictionariesAndValidation(this);
+		for (int i = 0; i < paths.size(); ++i) {
+			SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(paths.get(i), null);
+			setDataDictionary(db);
+			db.close();
 		}
 	}
 
@@ -77,7 +52,8 @@ public class DiccionariosActivity extends SherlockActivity {
 			String endLanguage = cursor.getString(2);
 			String description = cursor.getString(3);
 			cursor.close();
-			adaptadorViewPager.adicionarItem(R.drawable.img_dictionary, beginLanguage + " - " + endLanguage, author, description);
+			adaptadorViewPager.adicionarItem(R.drawable.img_dictionary, beginLanguage + " - " + endLanguage, author,
+					description);
 		}
 		cursor.close();
 	}
@@ -92,7 +68,7 @@ public class DiccionariosActivity extends SherlockActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		
+
 		return true;
 
 	}

@@ -120,17 +120,6 @@ public class PalabraActivity extends SherlockActivity {
 		MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.activity_word, menu);
 		return true;
-
-		// if (esFavorito) {
-		// menu.add(0, 7, 0,
-		// "Favorito").setIcon(R.drawable.ic_menu_star).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		// } else {
-		// menu.add(0, 7, 0,
-		// "Favorito").setIcon(R.drawable.ic_menu_star_no).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		// }
-		//
-		// return true;
-
 	}
 
 	@Override
@@ -155,29 +144,6 @@ public class PalabraActivity extends SherlockActivity {
 			}
 			db.cerrar();
 		}
-		// if (item.getItemId() == android.R.id.home) {
-		// this.finish();
-		// }
-		// if (item.getItemId() == 7) {
-		// FavoritosDbAdapter db = new FavoritosDbAdapter(this);
-		// db.abrir();
-		// if (esFavorito) {
-		// Toast.makeText(this, "Esta palabra ya no es favorita.",
-		// Toast.LENGTH_SHORT).show();
-		// item.setIcon(R.drawable.ic_menu_star_no);
-		// db.eliminarFavorito(textoPalabra.getText().toString(), archivoDb);
-		// esFavorito = false;
-		// } else {
-		// Toast.makeText(this, "Esta palabra ahora esta como favorita.",
-		// Toast.LENGTH_SHORT).show();
-		// item.setIcon(R.drawable.ic_menu_star);
-		// db.adicionarFavorito(textoPalabra.getText().toString(),
-		// tituloActivity, archivoDb);
-		// esFavorito = true;
-		// }
-		// db.cerrar();
-		// }
-
 		return true;
 	}
 
