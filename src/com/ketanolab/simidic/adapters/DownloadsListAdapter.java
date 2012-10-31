@@ -3,7 +3,6 @@ package com.ketanolab.simidic.adapters;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ketanolab.simidic.R;
-import com.ketanolab.simidic.util.Constants;
 
 public class DownloadsListAdapter extends BaseAdapter {
 
