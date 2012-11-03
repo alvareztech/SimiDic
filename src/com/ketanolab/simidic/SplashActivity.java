@@ -6,19 +6,22 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 
 public class SplashActivity extends Activity {
+
+	private ImageView imagenKetanolab;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 
-		RelativeLayout layout = (RelativeLayout) findViewById(R.id.layoutSplash);
-		Animation animationnLayout = AnimationUtils.loadAnimation(this, R.anim.anim_layout);
+		imagenKetanolab = (ImageView) findViewById(R.id.imagenKetanolab);
 
-		animationnLayout.setAnimationListener(new AnimationListener() {
+		Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_splash);
+
+		animation.setAnimationListener(new AnimationListener() {
 
 			public void onAnimationStart(Animation animation) {
 
@@ -35,7 +38,6 @@ public class SplashActivity extends Activity {
 			}
 		});
 
-		layout.startAnimation(animationnLayout);
+		imagenKetanolab.startAnimation(animation);
 	}
-
 }

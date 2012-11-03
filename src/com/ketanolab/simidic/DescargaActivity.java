@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.BitSet;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -51,6 +52,7 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 
 	// Tasks
 	private ArrayList<DownloadFile> tasks;
+	private BitSet downloading;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 			listAdapter.eliminarTodo();
 			urls = new ArrayList<String>();
 			fileNames = new ArrayList<String>();
+			downloading = new BitSet();
 			layoutMensaje.setVisibility(View.GONE);
 			layoutCargando.setVisibility(View.VISIBLE);
 		}
@@ -142,11 +145,12 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 
 	public void onItemClick(AdapterView<?> arg0, View view, int posicion, long id) {
 		Log.i(Constants.DEBUG, "Descargando... " + fileNames.get(posicion));
-		tasks.add(posicion, new DownloadFile(posicion));
-		if (tasks.get(posicion).isCancelled()) {
-			tasks.get(posicion).cancel(true);
+		if (downloading.get(posicion)) {
+			Toast.makeText(this, R.string.is_downloaded_or_downloading, Toast.LENGTH_SHORT).show();
 		} else {
+			tasks.add(posicion, new DownloadFile(posicion));
 			tasks.get(posicion).execute(urls.get(posicion), fileNames.get(posicion));
+			downloading.set(posicion);
 		}
 	}
 
@@ -220,10 +224,12 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 			if (fileLength == result) {
 				listAdapter.updateItem(position, R.drawable.ic_action_ok,
 						getResources().getString(R.string.downloaded), false);
+				downloading.set(position);
 			} else {
 				Toast.makeText(DescargaActivity.this, R.string.download_failed, Toast.LENGTH_SHORT).show();
 				listAdapter.updateItem(position, R.drawable.ic_menu_download,
 						getResources().getString(R.string.try_again), false);
+				downloading.set(position, false);
 			}
 		}
 	}

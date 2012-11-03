@@ -9,8 +9,7 @@ package com.ketanolab.simidic;
 
 public final class R {
     public static final class anim {
-        public static final int anim_layout=0x7f040000;
-        public static final int anim_splash=0x7f040001;
+        public static final int anim_splash=0x7f040000;
     }
     public static final class attr {
         /**  Specified if we are forcing an action item overflow menu. 
@@ -1150,14 +1149,15 @@ containing a value of this type.
         public static final int logo_ketanolab=0x7f020068;
         public static final int logo_ketanolab_mini=0x7f020069;
         public static final int radial_gradient=0x7f02006a;
-        public static final int violet_gradient=0x7f02006b;
-        public static final int vpi__tab_indicator=0x7f02006c;
-        public static final int vpi__tab_selected_focused_holo=0x7f02006d;
-        public static final int vpi__tab_selected_holo=0x7f02006e;
-        public static final int vpi__tab_selected_pressed_holo=0x7f02006f;
-        public static final int vpi__tab_unselected_focused_holo=0x7f020070;
-        public static final int vpi__tab_unselected_holo=0x7f020071;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020072;
+        public static final int splash_animation=0x7f02006b;
+        public static final int violet_gradient=0x7f02006c;
+        public static final int vpi__tab_indicator=0x7f02006d;
+        public static final int vpi__tab_selected_focused_holo=0x7f02006e;
+        public static final int vpi__tab_selected_holo=0x7f02006f;
+        public static final int vpi__tab_selected_pressed_holo=0x7f020070;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020071;
+        public static final int vpi__tab_unselected_holo=0x7f020072;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020073;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f050027;
@@ -1189,65 +1189,60 @@ containing a value of this type.
         public static final int abs__title=0x7f050020;
         public static final int abs__titleDivider=0x7f050021;
         public static final int abs__up=0x7f050010;
-        public static final int authorItem=0x7f05004b;
+        public static final int authorItem=0x7f050046;
         public static final int bottom=0x7f050003;
-        public static final int caja_consulta=0x7f05003f;
-        public static final int descargaImageView=0x7f050049;
-        public static final int descriptionItem=0x7f05004c;
+        public static final int caja_consulta=0x7f050038;
+        public static final int descargaImageView=0x7f050044;
+        public static final int descriptionItem=0x7f050047;
         public static final int disableHome=0x7f05000e;
-        public static final int extraItem=0x7f05004d;
+        public static final int extraItem=0x7f050048;
         public static final int homeAsUp=0x7f05000b;
-        public static final int imageView1=0x7f050030;
-        public static final int imageView2=0x7f050032;
-        public static final int imagenLogo=0x7f050044;
-        public static final int imagen_item=0x7f05004e;
-        public static final int imageview_logo=0x7f050045;
-        public static final int indicator=0x7f05003d;
-        public static final int item_favorite=0x7f050058;
-        public static final int item_update=0x7f050053;
-        public static final int layoutCargando=0x7f050036;
-        public static final int layoutMensaje=0x7f050039;
-        public static final int layoutSplash=0x7f050043;
-        public static final int licenceTextView=0x7f05002d;
+        public static final int imageSwitcher1=0x7f05002e;
+        public static final int imagenIlla=0x7f05003d;
+        public static final int imagenKetanolab=0x7f05003e;
+        public static final int imagen_item=0x7f050049;
+        public static final int imageview_logo=0x7f050040;
+        public static final int indicator=0x7f050036;
+        public static final int item_favorite=0x7f050053;
+        public static final int item_update=0x7f05004e;
+        public static final int layoutCargando=0x7f05002f;
+        public static final int layoutMensaje=0x7f050032;
+        public static final int layoutSplash=0x7f05003c;
         public static final int listMode=0x7f050007;
-        public static final int lista=0x7f05003b;
-        public static final int listaFavoritos=0x7f05003e;
-        public static final int meaning_item=0x7f050052;
-        public static final int menu_dictionaries=0x7f050054;
-        public static final int menu_download=0x7f050055;
-        public static final int menu_favorites=0x7f050056;
-        public static final int menu_information=0x7f050057;
-        public static final int nameItem=0x7f05004a;
+        public static final int lista=0x7f050034;
+        public static final int listaFavoritos=0x7f050037;
+        public static final int meaning_item=0x7f05004d;
+        public static final int menu_dictionaries=0x7f05004f;
+        public static final int menu_download=0x7f050050;
+        public static final int menu_favorites=0x7f050051;
+        public static final int menu_information=0x7f050052;
+        public static final int nameItem=0x7f050045;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050006;
-        public static final int progressBar=0x7f050037;
+        public static final int progressBar=0x7f050030;
         public static final int showCustom=0x7f05000d;
         public static final int showHome=0x7f05000a;
         public static final int showTitle=0x7f05000c;
-        public static final int subtitulo_item=0x7f050050;
+        public static final int subtitulo_item=0x7f05004b;
         public static final int tabMode=0x7f050008;
-        public static final int textView1=0x7f05002c;
-        public static final int textView2=0x7f050034;
-        public static final int textView4=0x7f050035;
-        public static final int textView5=0x7f05002f;
-        public static final int textoCargando=0x7f050038;
-        public static final int textoDiccionario=0x7f050042;
-        public static final int textoMensaje=0x7f05003a;
-        public static final int textoPalabra=0x7f050040;
-        public static final int textoSignificado=0x7f050041;
-        public static final int textview_extra=0x7f050048;
-        public static final int textview_subtitulo=0x7f050047;
-        public static final int textview_titulo=0x7f050046;
-        public static final int titleAuthorsNameTextView=0x7f05002e;
-        public static final int titulo_item=0x7f05004f;
+        public static final int textSwitcher1=0x7f05002c;
+        public static final int textSwitcher2=0x7f05002d;
+        public static final int textView1=0x7f05003f;
+        public static final int textoCargando=0x7f050031;
+        public static final int textoDiccionario=0x7f05003b;
+        public static final int textoMensaje=0x7f050033;
+        public static final int textoPalabra=0x7f050039;
+        public static final int textoSignificado=0x7f05003a;
+        public static final int textview_extra=0x7f050043;
+        public static final int textview_subtitulo=0x7f050042;
+        public static final int textview_titulo=0x7f050041;
+        public static final int titulo_item=0x7f05004a;
         public static final int top=0x7f050004;
         public static final int triangle=0x7f050001;
         public static final int underline=0x7f050002;
-        public static final int urlIllaa=0x7f050033;
-        public static final int urlKetanolab=0x7f050031;
         public static final int useLogo=0x7f050009;
-        public static final int viewPager=0x7f05003c;
-        public static final int word_item=0x7f050051;
+        public static final int viewPager=0x7f050035;
+        public static final int word_item=0x7f05004c;
         public static final int wrap_content=0x7f050005;
     }
     public static final class integer {
@@ -1329,58 +1324,68 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f0b0009;
-        /**  AboutActivity 
-         */
-        public static final int app_full_name=0x7f0b002e;
+        public static final int app_full_name=0x7f0b000c;
         public static final int app_name=0x7f0b000a;
         public static final int app_version_name=0x7f0b000b;
-        public static final int author=0x7f0b0023;
-        public static final int authors=0x7f0b0033;
-        public static final int authors_names=0x7f0b0032;
+        public static final int author=0x7f0b0025;
+        public static final int authors=0x7f0b0030;
         /**  FavoritosActivity 
+ FavoritosActivity 
          */
-        public static final int by=0x7f0b002b;
-        public static final int creditos=0x7f0b000e;
-        public static final int credits=0x7f0b0031;
-        public static final int dany=0x7f0b0027;
-        public static final int descargar=0x7f0b0011;
-        public static final int description=0x7f0b0024;
-        public static final int developer=0x7f0b0026;
-        public static final int diccionarios=0x7f0b0010;
-        /**  MainActivity 
-         */
-        public static final int download_dictionaries=0x7f0b0013;
+        public static final int by=0x7f0b002a;
+        public static final int coordinator_and_graphics=0x7f0b0033;
+        public static final int credits=0x7f0b0011;
+        public static final int description=0x7f0b0026;
+        public static final int developer=0x7f0b0031;
+        public static final int dictionaries=0x7f0b0010;
+        public static final int download_dictionaries=0x7f0b0015;
         /**  DescargaActivity 
+ DescargaActivity 
          */
-        public static final int download_failed=0x7f0b0017;
-        public static final int downloaded=0x7f0b0019;
-        public static final int downloading=0x7f0b001a;
-        public static final int downloads=0x7f0b0018;
-        public static final int favorite=0x7f0b0028;
+        public static final int download_failed=0x7f0b0019;
+        public static final int downloaded=0x7f0b001a;
+        public static final int downloading=0x7f0b001c;
+        public static final int downloads=0x7f0b0012;
         /**  PalabraActivity 
+ PalabraActivity 
          */
+        public static final int favorite=0x7f0b002b;
         public static final int favorite_now=0x7f0b002c;
-        public static final int favoritos=0x7f0b000f;
-        public static final int illa_a=0x7f0b002f;
-        public static final int informacion=0x7f0b0012;
-        public static final int ingrese_palabra=0x7f0b000d;
-        public static final int ketanolab=0x7f0b000c;
-        public static final int licence=0x7f0b0030;
-        public static final int load_completed=0x7f0b001b;
-        public static final int loading=0x7f0b001f;
-        public static final int meaning=0x7f0b0021;
-        public static final int name=0x7f0b0022;
-        public static final int no_downloads=0x7f0b002a;
+        /**  Titles 
+ Titles 
+         */
+        public static final int favorites=0x7f0b000f;
+        public static final int illa_a=0x7f0b000e;
+        public static final int information=0x7f0b0013;
+        /**  MainActivity 
+ MainActivity 
+         */
+        public static final int insert_word=0x7f0b0014;
+        public static final int is_downloaded_or_downloading=0x7f0b001b;
+        public static final int ketanolab=0x7f0b000d;
+        public static final int licence=0x7f0b002f;
+        public static final int linguist=0x7f0b0032;
+        public static final int load_completed=0x7f0b001d;
+        public static final int loading=0x7f0b0021;
+        public static final int meaning=0x7f0b0023;
+        public static final int name=0x7f0b0024;
+        public static final int no_downloads=0x7f0b0029;
         public static final int no_favorite_now=0x7f0b002d;
-        public static final int no_internet=0x7f0b001c;
-        public static final int sd_required=0x7f0b0015;
-        public static final int size=0x7f0b0025;
-        public static final int try_again=0x7f0b0029;
-        public static final int update=0x7f0b001e;
-        public static final int word=0x7f0b0020;
-        public static final int you_dont_have_conection=0x7f0b001d;
-        public static final int you_dont_have_dictionaries=0x7f0b0014;
-        public static final int you_dont_have_sd=0x7f0b0016;
+        public static final int no_internet=0x7f0b001e;
+        /**  AboutActivity 
+ AboutActivity 
+         */
+        public static final int present=0x7f0b002e;
+        public static final int producers=0x7f0b0034;
+        public static final int sd_required=0x7f0b0017;
+        public static final int size=0x7f0b0027;
+        public static final int special_thanks=0x7f0b0035;
+        public static final int try_again=0x7f0b0028;
+        public static final int update=0x7f0b0020;
+        public static final int word=0x7f0b0022;
+        public static final int you_dont_have_conection=0x7f0b001f;
+        public static final int you_dont_have_dictionaries=0x7f0b0016;
+        public static final int you_dont_have_sd=0x7f0b0018;
     }
     public static final class style {
         public static final int AppTheme=0x7f0a005c;
