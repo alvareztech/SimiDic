@@ -19,8 +19,10 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,6 +56,8 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 	private ArrayList<DownloadFile> tasks;
 	private BitSet downloading;
 
+	private PowerManager.WakeLock wl;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.Theme_Sherlock_Light_DarkActionBar_ForceOverflow);
@@ -79,6 +83,14 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 		}
 
 		tasks = new ArrayList<DownloadFile>();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "Simidic");
+		wl.acquire();
 	}
 
 	public class LoadJSON extends AsyncTask<String, String, Void> {
@@ -273,6 +285,6 @@ public class DescargaActivity extends SherlockActivity implements OnItemClickLis
 	@Override
 	protected void onStop() {
 		super.onStop();
-
+		wl.release();
 	}
 }
